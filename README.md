@@ -1,7 +1,6 @@
 To run tests:
 
-1. You need poetry
-Install =>
+1. You have to get poetry. Install instruction link below. If you have poetry already go to step 2. 
 ```
 https://python-poetry.org/docs/#installation
 ```
