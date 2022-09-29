@@ -1,0 +1,17 @@
+[tool.poetry]
+name = "project-centrum-rowerowe"
+version = "0.1.0"
+description = ""
+authors = ["Jakub <gieratrdm@gmail.com>"]
+readme = "README.md"
+packages = [{include = "project_centrum_rowerowe"}]
+
+[tool.poetry.dependencies]
+python = "^3.10"
+pytest-playwright = "^0.3.0"
+pydantic = "^1.10.2"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
