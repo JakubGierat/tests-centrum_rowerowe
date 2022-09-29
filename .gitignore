@@ -1,5 +1,5 @@
 # Created by pytest automatically.
 node_modules
 __pycache__
-__init__
 .pytest_cache
+.gitignore
