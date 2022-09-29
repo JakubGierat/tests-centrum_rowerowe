@@ -17,3 +17,6 @@ $ poetry install
 '''
 $ pytest tests
 '''
+```
+$ poetry install
+```
