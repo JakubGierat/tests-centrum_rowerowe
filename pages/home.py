@@ -11,9 +11,11 @@ class HomePage:
         self.popup_container = page.locator(".suggestion > .container-inner")
         self.popup_tiles = page.locator("ul.right > li > a > p > .name")
         self.popup_suggestion_list = page.locator(".suggestion > .container-inner > .left > .texts > li > .name > em")
+        self.cookies_accept = page.locator(".buttons > span[class='accept button orange']")
 
     def load(self):
         self.page.goto(settings.TEST_URL)
+        self.cookies_accept.click()
 
     def type_phrase(self, phrase: str):
         self.search_input.type(phrase)
@@ -32,6 +34,4 @@ class HomePage:
 
     def popup_suggestion_list_contains_phrase(self, phrase: str, test_data):
         suggestion_list = self.popup_suggestion_list.all_text_contents()
-        print(suggestion_list[0])
-        print(len(suggestion_list))
         return phrase in suggestion_list[0] and len(suggestion_list) >= test_data["minimumSuggestList"]

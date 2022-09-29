@@ -8,6 +8,7 @@ class Base(BaseSettings):
     NUMBEROFRESULTTILES: int = 30
     EMPTYINPUTTEXT: str = "Nie znaleźliśmy produktów odpowiadających Twoim parametrom..."
     FAILPHRASE: str = "abcdefgh12345"
+    OFFERSURL: str = "https://www.centrumrowerowe.pl/oferta/"
 
 
 settings = Base()

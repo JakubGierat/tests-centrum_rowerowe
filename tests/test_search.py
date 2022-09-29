@@ -49,7 +49,7 @@ def test_basic_search(page: Page,
     result_page.search()
 
     # Checking the incorrect phrase message is displayed and contains correct text
-    assert result_page.empty_input_alert_text, f"Incorrect aletr text after write fail phrase to search input"
+    assert result_page.empty_input_alert_text, f"Incorrect alert text after write fail phrase to search input"
 
     # Clear search input
     result_page.clear_search_input()
@@ -63,67 +63,5 @@ def test_basic_search(page: Page,
     # Click the remove search phrase button
     result_page.click_remove_search_phrase_button()
 
-    # Check the search phrase header disappeared
-    assert not result_page.search_phrase_header_is_visible(phrase)
-
-
-
-
-
-'''
-def run(playwright: Playwright) -> None:
-    browser = playwright.chromium.launch(headless=False)
-    context = browser.new_context()
-
-    # Open new page
-    page = context.new_page()
-
-    # Click html
-    page.goto("https://www.centrumrowerowe.pl/")
-
-    # Click [placeholder="Szukaj produktów"]
-    page.locator("[placeholder=\"Szukaj produktów\"]").click()
-
-    # Fill [placeholder="Szukaj produktów"]
-    page.locator("[placeholder=\"Szukaj produktów\"]").fill("kierownica")
-
-    # Click span:has-text("Szukaj") >> nth=0
-    page.locator("span:has-text(\"Szukaj\")").first.click()
-    page.wait_for_url("https://www.centrumrowerowe.pl/oferta/?q=kierownica&sort=11")
-
-    # Click [placeholder="Szukaj produktów"]
-    page.locator("[placeholder=\"Szukaj produktów\"]").click()
-
-    # Fill [placeholder="Szukaj produktów"]
-    page.locator("[placeholder=\"Szukaj produktów\"]").fill("abcdefgh12345")
-
-    # Click .button > .icon
-    page.locator(".button > .icon").click()
-    page.wait_for_url("https://www.centrumrowerowe.pl/oferta/?q=abcdefgh12345&sort=11")
-
-    # Click text=Nie znaleźliśmy produktów odpowiadających Twoim parametrom...
-    page.locator("text=Nie znaleźliśmy produktów odpowiadających Twoim parametrom...").click()
-
-    # Click [placeholder="Szukaj produktów"]
-    page.locator("[placeholder=\"Szukaj produktów\"]").click()
-
-    # Click text=Menu Zaloguj się Koszyk Szukaj
-    page.locator("text=Menu Zaloguj się Koszyk Szukaj").click()
-
-    # Fill [placeholder="Szukaj produktów"]
-    page.locator("[placeholder=\"Szukaj produktów\"]").fill("")
-
-    # Click text=Szukaj
-    page.locator("text=Szukaj").click()
-
-    # Click span:has-text("Szukaj") >> nth=0
-    page.locator("span:has-text(\"Szukaj\")").first.click()
-
-    # ---------------------
-    context.close()
-    browser.close()
-
-
-with sync_playwright() as playwright:
-    run(playwright)
-'''
+    # Check the all offers page is displayed
+    expect(page).to_have_url(result_page.all_offers_page_is_displayed())

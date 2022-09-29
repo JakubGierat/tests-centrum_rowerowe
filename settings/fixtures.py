@@ -9,5 +9,6 @@ def test_data() -> dict:
         "minimumSuggestList": settings.MINIMUMSUGGESTLIST,
         "numberOfResultTiles": settings.NUMBEROFRESULTTILES,
         "emptyInputText": settings.EMPTYINPUTTEXT,
-        "failPhrase": settings.FAILPHRASE
+        "failPhrase": settings.FAILPHRASE,
+        "offersUrl": settings.OFFERSURL
     }
