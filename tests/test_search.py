@@ -5,10 +5,8 @@ from pages.result import ResultPage
 from settings.params import settings
 from settings.fixtures import test_data
 
-PHRASE = settings.PHRASE
 
-
-@pytest.mark.parametrize("phrase", PHRASE)
+@pytest.mark.parametrize("phrase", settings.PHRASE)
 def test_basic_search(page: Page,
     phrase: str,
     test_data: dict, 
@@ -64,4 +62,4 @@ def test_basic_search(page: Page,
     result_page.click_remove_search_phrase_button()
 
     # Check the all offers page is displayed
-    expect(page).to_have_url(result_page.all_offers_page_is_displayed())
+    assert result_page.all_offers_page_is_displayed(test_data)

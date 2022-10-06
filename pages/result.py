@@ -1,4 +1,6 @@
+from json import load
 from playwright.sync_api import Page
+from pages.home import Logger
 from settings.params import settings
 
 class ResultPage:
@@ -11,6 +13,7 @@ class ResultPage:
         self.item_container = page.locator(".item-container > .first-leyer")
         self.empty_input_text = page.locator(".empty-list-text > h2")
         self.remove_search_phrase_btn = page.locator("div[class='searched-phrase hidden-xs'] > form[action='ProductList/ProductList']:nth-child(2) > a")
+        self.category_name_header = page.locator("//h1")
 
     # Type phrase in search input
     def type_phrase(self, phrase: str):
@@ -46,8 +49,8 @@ class ResultPage:
         self.remove_search_phrase_btn.click()
 
     # Check the all offers page is displayed
-    def all_offers_page_is_displayed(self):
-        self.item_container.nth(0).wait_for()
-        return settings.OFFERSURL
+    def all_offers_page_is_displayed(self, test_data):
+        self.page.wait_for_url(test_data["offersUrl"])
+        return test_data["offersUrl"] == self.page.url
     
 
