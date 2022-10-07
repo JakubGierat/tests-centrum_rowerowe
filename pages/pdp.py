@@ -12,7 +12,7 @@ class ProductDetailsPage:
     def __init__(self, page: Page):
         self.page = page
         self.product_name_header = page.locator(".product-name > h1")
-        self.product_price_value = page.locator(".main-price")
+        self.product_price_value = page.locator(".price-box > .price-left > .main-price")
         self.add_to_cart_btn = page.locator("div.buy > a.gtm-add-to-cart-detail >> visible=true")
         self.add_to_cart_alert_header = page.locator("div.padding > div.header")
         self.add_to_cart_alert_product_name = page.locator("div.col > span.productName")
@@ -29,10 +29,10 @@ class ProductDetailsPage:
         self.product_price_value.wait_for()
 
         Logger.info("PDP price: {}"
-        .format(float(''.join([i.replace('\xa0zł', '').replace(',', '.').strip(' ') 
+        .format(float(''.join([i.replace(' ', '').replace('\xa0zł', '').replace(',', '.').strip(' ') 
         for i in self.product_price_value.first.text_content().split('\n')]))))
 
-        return float(''.join([i.replace('\xa0zł', '').replace(',', '.').strip(' ')
+        return float(''.join([i.replace(' ', '').replace('\xa0zł', '').replace(',', '.').strip(' ')
         for i in self.product_price_value.first.text_content().split('\n')]))
 
     def add_to_cart(self):
@@ -46,10 +46,10 @@ class ProductDetailsPage:
         return self.add_to_cart_alert_product_name.text_content().lower().strip(' ')
 
     def add_to_cart_alert_product_price_value(self):
-        b = float(''.join([i.replace(' / szt.', '').replace('\xa0zł', '').replace(',', '.').strip('\t').strip(' ') for i in self.add_to_cart_alert_product_price.first.text_content().split('\n')]))
+        b = float(''.join([i.replace(' / szt.', '').replace('\xa0zł', '').replace(',', '.').replace(' ', '').strip('\t').strip(' ') for i in self.add_to_cart_alert_product_price.first.text_content().split('\n')]))
 
         Logger.info("Alert price: {}".format(b))
-        return float(''.join([i.replace(' / szt.', '').replace('\xa0zł', '').replace(',', '.').strip('\t').strip(' ') 
+        return float(''.join([i.replace(' / szt.', '').replace('\xa0zł', '').replace(',', '.').replace(' ','').strip('\t').strip(' ') 
         for i in self.add_to_cart_alert_product_price.first.text_content().split('\n')]))
 
     def add_to_cart_alert_back_to_shopping_btn_visible(self):

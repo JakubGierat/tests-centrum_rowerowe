@@ -59,7 +59,7 @@ def test_basic_search(page: Page,
     assert result_page.search_input_contains_fail_phrase(), "Incorrect phrase in search input"
 
     # Click the remove search phrase button
-    result_page.click_remove_search_phrase_button()
+    result_page.click_remove_search_phrase_button(test_data)
 
     # Check the all offers page is displayed
     assert result_page.all_offers_page_is_displayed(test_data)

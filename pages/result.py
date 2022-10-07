@@ -1,6 +1,7 @@
 from json import load
 from playwright.sync_api import Page
 from pages.home import Logger
+from settings.fixtures import test_data
 from settings.params import settings
 
 class ResultPage:
@@ -44,13 +45,15 @@ class ResultPage:
         return self.search_input.text_content() == ''
 
     # Click remove search phrase button (cross sign button next to search phrase header)
-    def click_remove_search_phrase_button(self):
+    def click_remove_search_phrase_button(self, test_data):
         self.remove_search_phrase_btn.wait_for()
+        self.remove_search_phrase_btn.hover()
         self.remove_search_phrase_btn.click()
-
+        
     # Check the all offers page is displayed
     def all_offers_page_is_displayed(self, test_data):
+        Logger.info("Actual URL: {}, Expected: {}".format(self.page.url, test_data["offersUrl"]))
         self.page.wait_for_url(test_data["offersUrl"])
-        return test_data["offersUrl"] == self.page.url
+        return self.page.url == test_data["offersUrl"]
     
 
