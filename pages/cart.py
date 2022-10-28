@@ -1,4 +1,3 @@
-from distutils.log import Log
 import logging
 from unicodedata import category
 from playwright.sync_api import Page

@@ -18,4 +18,8 @@ def test_data() -> dict:
         "addToCartAlertHeader" : settings.ADDTOCARTALERTHEADER,
         "shippingCost" : settings.SHIPPINGCOST,
         "emptyCartAlert" : settings.EMPTYCARTALERT,
+        "sortbyParams" : settings.SORTBYPARAMS,
+        "sortby" : settings.SORTBY,
+        "sortbyEndpoints": settings.SORTBYENDPOINTS,
     }
+

@@ -25,6 +25,8 @@ class HomePage:
         self.recommended_product_item = page.locator("a.gtm-detail-link")
         self.recommended_product_name = page.locator("div.item-container > div.bottom > div.name")
         self.recommended_product_price = page.locator("span.final-price")
+        self.popular_categories_container = page.locator("div.container > div.container-inner > div.category-container")
+        self.popular_categories_category_tile = page.locator("div.category-container > div.flex-container > div > div > div > a")
 
 
     def load(self):
@@ -100,6 +102,9 @@ class HomePage:
     def recommended_product_container_is_displayed(self):
         return self.recommended_product_container.is_visible()
 
+    def popular_categories_container_is_displayed(self):
+        return self.popular_categories_container.is_visible()
+
     '''    def recommended_product_item_endpoint(self):
         Logger.info(self.recommended_product_item.nth(0).inner_html())
         return self.recommended_product_item.nth(0).first.inner_html()'''
@@ -120,8 +125,18 @@ class HomePage:
         Logger.info("Main page price: {}".format(product_price))
 
         return float(''.join([i.replace(' ', '').replace('\xa0zł', '').replace(',','.').strip(' ') for i in self.recommended_product_price.first.text_content().split('\n')][0:3]))
-    
 
+    def popular_categories_tiles_counter(self):
+        Logger.info("Popular category tile number: {}".format(self.popular_categories_category_tile.count()))
+        return self.popular_categories_category_tile.count()
+
+    def popular_categories_tile_click(self, nth_index):
+        self.popular_categories_category_tile.nth(nth_index).click()
+
+    def popular_categories_tile_name(self, nth_index):
+        Logger.info(self.popular_categories_category_tile.nth(nth_index).text_content().replace('\n', '').strip(' ').split(' '))
+        name = self.popular_categories_category_tile.nth(nth_index).text_content().replace('\n', '').strip(' ').lower().split(' ')
+        return name
 
     
 
